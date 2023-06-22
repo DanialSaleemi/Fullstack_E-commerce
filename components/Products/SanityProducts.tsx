@@ -1,8 +1,11 @@
+"use client"
+
 import { client } from "@/lib/sanityClient";
 import NextImage from "next/image";
 import ImageUrlBuilder from "@sanity/image-url";
 import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { POST } from "@/app/api/cart/route";
 
 interface IProduct {
   title: string;
@@ -32,8 +35,21 @@ export const getProductData = async () => {
   return res;
 };
 
-export async function Productcard() {
+
+
+export async function Productcard(item:IProduct) {
   const data: IProduct[] = await getProductData();
+  const handleAddtoCart = async () => {
+    const res = fetch("/api/cart", {
+      method:"POST",
+      body: JSON.stringify({
+        product_id: item._id
+      })
+    })
+    const result = (await res).json()
+    console.log(result)
+    
+  }
   return (
     <>
 
@@ -54,7 +70,7 @@ export async function Productcard() {
               {item.title}
             </h1>
             <h2 className="font-bold">{item.price}</h2>
-            <button className="rounded py-2 px-6 border bg-blue-600 text-white">Add to Cart</button>
+            <button onClick={() => handleAddtoCart} className="rounded py-2 px-6 border bg-blue-600 text-white">Add to Cart</button>
           </div>
         ))}
       </div>
