@@ -1,9 +1,16 @@
 This is an E-Commerce [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-Content Management System (CMS) -> Sanity.IO/ Sanity Studio v3 (https://www.sanity.io/)
-Styling                         -> Tailwind CSS / Shadcn-UI (https://ui.shadcn.com/)
-Database (Serverless)           -> Vercel/Postgres (https://vercel.com/docs/storage/vercel-postgres)
-ORM                             -> Drizzle ORM (https://orm.drizzle.team/)
-Payment Processing              -> Stripe APIs (https://stripe.com/docs/testing)
+
+
+
+
+![Static Badge](https://img.shields.io/badge/ORM-Drizzleorm-blue?link=https%3A%2F%2Form.drizzle.team%2F)
+
+
+* Content Management System (CMS) | [Sanity.IO/ Sanity Studio v3](https://www.sanity.io/)
+* Styling                         | [Tailwind CSS](https://tailwindcss.com/) / [Shadcn-UI](https://ui.shadcn.com/)
+* Database (Serverless)           | [Vercel/Postgres](https://vercel.com/docs/storage/vercel-postgres)
+* ORM                             | [Drizzle ORM](https://orm.drizzle.team/)
+* Payment Processing                | [Stripe APIs](https://stripe.com/docs/testing)
 
 ## Getting Started
 
