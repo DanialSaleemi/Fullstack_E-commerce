@@ -20,7 +20,7 @@ export default function PromotionCards() {
                 alt="promotion_card_image"
                 width={600}
                 height={600}
-                className=" justify-items-end h-52 w-auto"
+                className=" justify-items-end h-auto w-auto"
               />
             </CardContent>
           </Card>
@@ -43,7 +43,7 @@ export default function PromotionCards() {
             <div>
               <Card className="grid w-auto h-auto bg-orange-300 bg-opacity-70 ">
                 <CardContent>
-                  <p className="font-medium text-center text-black text-sm opacity-80">
+                  <p className="font-medium text-sm text-black  opacity-80">
                     Flex Sweatshirt
                   </p>
                   <span className=" text-black text-md line-through opacity-80">
@@ -58,13 +58,14 @@ export default function PromotionCards() {
                   alt="promotion_card_image"
                   width={285}
                   height={280}
+                  className=" object-cover object-bottom"
                 />
               </Card>
             </div>
             <div>
               <Card className="grid w-auto h-auto bg-slate-400 bg-opacity-50">
                 <CardContent>
-                  <p className="font-medium text-center text-black text-sm opacity-80">
+                  <p className="font-medium text-black text-sm opacity-80">
                     Flex Push Button Bomber
                   </p>
                   <span className=" text-black text-md line-through opacity-80">
@@ -79,6 +80,7 @@ export default function PromotionCards() {
                   alt="promotion_card_image"
                   width={280}
                   height={280}
+                  className=" h-auto w-auto "
                 />
               </Card>
             </div>

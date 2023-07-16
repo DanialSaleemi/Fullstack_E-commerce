@@ -33,7 +33,7 @@ export default function Hero() {
     
     <div>      
       <div className='flex my-12 rounded-full items-center bg-orange-100 h-[600px] w-[600px]'>                
-      <Image className='absolute' src={"/header.webp"} alt="avatar" height={700} width={700}/>      
+      <Image className='absolute w-auto h-auto' src={"/header.webp"} alt="avatar" height={700} width={700}/>      
       </div>
     </div>
     </div>
