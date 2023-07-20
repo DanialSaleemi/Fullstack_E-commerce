@@ -24,7 +24,7 @@ export default async function Productcard(
   return (
     <>
       <div className="grid grid-cols-5 gap-x-4">
-        {data.map((items: IProduct) => (
+        {/* {data.map((items: IProduct) => (
           <div key={items._id} className="ml-24">
             {items.altimages ? (
               items.altimages.map((elm) => {
@@ -42,14 +42,15 @@ export default async function Productcard(
               <div />
             )}
           </div>
-        ))}
+        ))} */}
 
         <div className="flex col-span-4 flex-wrap">
           {data.map((items: IProduct) => (
-            
-            (items._id!=params.id)? (<div/>):(
             <div key={items._id} className="flex gap-x-6">
             
+           { (items._id!=params.id)? (<div/>):(
+            
+            <>
               <Image
                 src={urlFor(items.image).width(500).height(500).url()}
                 alt={items.title}
@@ -93,8 +94,9 @@ export default async function Productcard(
                   </h2>
                 </div>
               </div>
+              </>
+              )}
               </div>
-              )
           ))}
         </div>
       </div>
