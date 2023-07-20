@@ -15,7 +15,7 @@ export const GET = async (request: NextRequest) => {
     const uid = req.searchParams.get("user_id") as string;
     if (!uid)
     {
-        alert("No items added to cart");
+       console.log("No items added to cart");
     }
     try {
         const res = await db.select().from(cartTable).where(eq(cartTable.user_id, uid));        

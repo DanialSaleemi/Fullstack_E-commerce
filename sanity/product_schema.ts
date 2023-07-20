@@ -16,10 +16,30 @@ export const product = {
       title: "Product Image",
     },
     {
+      name: "altimages",
+      title: "More product images",
+      type: "array",
+      of:[ 
+        {
+          type: "image"
+        },
+        ]
+    },
+    {
       name: "description",
       type: "string",
       title: "Product Description",
     },
+/*    {
+      name: "sizes",
+      title: "Sizes",
+      type: "array",
+      of: [
+        { type: "string" }
+      ],
+
+    },
+*/   
     {
       name: "price",
       type: "string",

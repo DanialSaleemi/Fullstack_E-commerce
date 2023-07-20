@@ -3,6 +3,7 @@
 import {
     Menubar,
     MenubarMenu,
+    MenubarSubTrigger,
     MenubarTrigger,
   } from "@/components/ui/menubar"
 import { ShoppingCart } from "lucide-react"
@@ -10,6 +11,8 @@ import Image from "next/image"
 import { SearchBar } from "./searchbar"
 import { useSelector } from "react-redux"
 import { RootState } from "@/app/store/store"
+import Link from "next/link"
+
 
   
   export function Menu() {
@@ -21,12 +24,36 @@ import { RootState } from "@/app/store/store"
       <>
         
 
-        <nav className="flex m-10 justify-evenly items-center h-auto w-auto" >                            
+        <nav className="flex m-10 justify-between items-center h-auto w-auto" >                            
+        <Link href="/">
+          <Image src={"/Logo.webp"} alt='Website logo' width={150} height={150}/>                
+        </Link>
 
-        <Image src={"/Logo.webp"} alt='Website logo' width={150} height={150}/>                
+        <Link href="/categories/Female">
+          <button>Female</button>
+        </Link>
+        <Link href="/categories/Male">
+          <button>Male</button>
+        </Link>
+        <Link href="/categories/Kids">
+          <button>Kids</button>
+        </Link>
+        <Link href="/categories/All">
+          <button>All Products</button>
+        </Link>
+
+        <SearchBar/>
+        <Link href={"/Checkout"}>
+      <div className="h-10 w-10 rounded-full bg-gray-200 flex justify-center items-center relative">
+        <span className="absolute right-1 top-0 rounded-full bg-red-500 h-4 w-4 text-white text-xs text-center">{CartValue}</span>
+      <ShoppingCart className="h-6 w-6"/>
+      </div>
+      </Link>
+
+{/*
       <Menubar>
         <MenubarMenu>
-          <MenubarTrigger>Female</MenubarTrigger>
+          <MenubarSubTrigger ref={"@/categories/Female"}>Female</MenubarTrigger>
         </MenubarMenu>
         <MenubarMenu>
           <MenubarTrigger>Male</MenubarTrigger>        
@@ -38,12 +65,8 @@ import { RootState } from "@/app/store/store"
           <MenubarTrigger>All Products</MenubarTrigger>
         </MenubarMenu>
       </Menubar>
-      <SearchBar/>
-      <div className="h-10 w-10 rounded-full bg-gray-200 flex justify-center items-center relative">
-        <span className="absolute right-1 top-0 rounded-full bg-red-500 h-4 w-4 text-white text-xs text-center">{CartValue}</span>
-      <ShoppingCart className="h-6 w-6"/>
-      </div>
 
+    */}
 
       </nav>
       </>

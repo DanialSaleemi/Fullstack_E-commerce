@@ -20,6 +20,7 @@ export default function PromotionCards() {
                 alt="promotion_card_image"
                 width={600}
                 height={600}
+                loading="lazy"
                 className=" justify-items-end h-auto w-auto"
               />
             </CardContent>
@@ -58,6 +59,7 @@ export default function PromotionCards() {
                   alt="promotion_card_image"
                   width={285}
                   height={280}
+                  loading="lazy"
                   className=" object-cover object-bottom"
                 />
               </Card>
@@ -80,6 +82,7 @@ export default function PromotionCards() {
                   alt="promotion_card_image"
                   width={280}
                   height={280}
+                  loading="lazy"
                   className=" h-auto w-auto "
                 />
               </Card>

@@ -4,8 +4,10 @@ This is an E-Commerce [Next.js](https://nextjs.org/) project bootstrapped with [
 ![Static Badge](https://img.shields.io/badge/NextJS-13-yellow)
 
 
-* Content Management System (CMS) | [Sanity.IO/ Sanity Studio v3](https://www.sanity.io/) ![Static Badge](https://img.shields.io/badge/CMS-Sanity--IO-red)
+* Headless Content Management System (CMS) | [Sanity.IO/ Sanity Studio v3](https://www.sanity.io/) ![Static Badge](https://img.shields.io/badge/CMS-Sanity--IO-red)
 * Styling | [Tailwind CSS](https://tailwindcss.com/) / [Shadcn-UI](https://ui.shadcn.com/) ![Static Badge](https://img.shields.io/badge/Tailwind--CSS-Shadcn--UI-green)
+
+* State Mangement | [Redux Toolkit](https://redux-toolkit.js.org/)
 
 * Database (Serverless) |  [Vercel/Postgres](https://vercel.com/docs/storage/vercel-postgres) ![Static Badge](https://img.shields.io/badge/Vercel-Postgres-orange)
 * ORM | [Drizzle ORM](https://orm.drizzle.team/) ![Static Badge](https://img.shields.io/badge/ORM-Drizzle_ORM-blue)

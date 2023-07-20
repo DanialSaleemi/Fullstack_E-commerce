@@ -1,5 +1,6 @@
 import React from 'react'
 import PromotionCards from './card'
+import Carousel from '../Carousel/carousel'
 
 export default function Promotion() {
   return (
@@ -13,6 +14,9 @@ export default function Promotion() {
     <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl">
         Our Promotions Events    
     </h1>
+    </div>
+    <div>
+     
     </div>
     <PromotionCards/>
     </>

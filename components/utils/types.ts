@@ -6,5 +6,5 @@ export type typeProduct = {
     tagline : string,
     category : string,
     price: number,
-    image: string | StaticImageData
+    image: string[] | StaticImageData[]
 };
