@@ -48,11 +48,16 @@ const getProductData = async (item: IProduct) => {
         {data.map((item:IProduct) => (
           <div key={item._id} className = "transition-transform duration-300 hover:scale-110 cursor-pointer">            
           <Link href={`/productpage/${item._id}`}>
-            <NextImage
-              src={urlFor(item.image).width(250).height(300).url()}
-              alt={"product_image"}            
+          {item.image &&(
+          <NextImage
+              src={urlFor(item.image).url()}
+              alt={"product_image"}      
+              width={250}
+              height={300} 
+              loading = "lazy"     
               className=" object-cover object-top"
             />
+          )}
             </Link>
             <h1 className="text-xl font-extrabold tracking-tight">
               {item.title}
