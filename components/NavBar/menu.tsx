@@ -26,7 +26,8 @@ import Link from "next/link"
 
         <nav className="flex m-10 justify-between items-center h-auto w-auto" >                            
         <Link href="/">
-          <Image src={"/Logo.webp"} alt='Website logo' width={150} height={150}/>                
+          <Image src={"/Logo.webp"} alt='Website logo' width={150} height={150}
+          className="h-auto w-auto"/>                
         </Link>
 
         <Link href="/categories/Female">

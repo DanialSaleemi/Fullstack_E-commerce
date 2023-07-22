@@ -3,7 +3,7 @@ import ImageUrlBuilder from "@sanity/image-url";
 import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Link from 'next/link';
-import Image from "next/image";
+import NextImage from "next/image";
 
 export interface IProduct {
   title: string;
@@ -57,11 +57,12 @@ const getProductData = async (item: IProduct) => {
         {data.map((item:IProduct) => (
           <div key={item._id} className = "transition-transform duration-300 hover:scale-110 cursor-pointer">            
             <Link href={`/productpage/${item._id}`}>
-            <img
-              src={urlFor(item.image).width(250).height(300).url()}
-              alt={"product_image"}           
+            <NextImage
+              src={urlFor(item.image).url()}
+              alt={"product_image"}
+              width={250}
+              height={300}           
               className=" object-cover object-top"
-              loading="lazy"
             />
             </Link>
             <h1 className="text-xl font-extrabold tracking-tight">

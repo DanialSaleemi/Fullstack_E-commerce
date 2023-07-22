@@ -15,6 +15,7 @@ export const Footer = () => {
               width={150}
               height={150}
               loading='lazy'
+              className='w-auto h-auto'
             />
             <p>
               Small, artisan label that offers a thoughtfully curated collection

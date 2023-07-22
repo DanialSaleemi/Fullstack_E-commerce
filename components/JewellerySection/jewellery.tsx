@@ -63,6 +63,7 @@ export const Jewellery = () => {
             width={300}
             height={380}
             loading="lazy"
+            className="w-auto h-auto"
             
           />
           <p className="gap-10 leading-loose tracking-wide mr-12 text-justify">
