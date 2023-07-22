@@ -14,6 +14,7 @@ export const product = {
       name: "image",
       type: "image",
       title: "Product Image",
+      image: "image"
     },
     {
       name: "altimages",

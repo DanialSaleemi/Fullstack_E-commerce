@@ -1,5 +1,5 @@
-//import { createClient  } from 'next-sanity';
-import { createClient } from "@sanity/preview-kit/client";
+import { createClient  } from 'next-sanity';
+// import { createClient } from "@sanity/preview-kit/client";
 // import { apiVersion, dataset, projectId, useCdn } from '../sanity/env';
 
 
