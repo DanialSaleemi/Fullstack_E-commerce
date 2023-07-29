@@ -9,5 +9,5 @@
 //     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
 //     token: process.env.SANITY_ACCESS_TOKEN,
 //     useCdn: true,
-//     studioUrl: 'http://localhost:3000/studio/vision'
+//     studioUrl: '${process.env.BASE_PATH}/studio/vision'
 // })

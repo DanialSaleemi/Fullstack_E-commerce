@@ -6,7 +6,7 @@ import { StripeProducts } from "../utils/types";
 const StripeCheckoutButton = () => {
   const handleCheckout = async () => {
     const fetchcheckoutproducts = async () => {
-      const res = await fetch(`http://localhost:3000/api/cart`, {
+      const res = await fetch(`${process.env.BASE_PATH}/api/cart`, {
         method: "GET",
         headers: {
           "content-type": "application/json",

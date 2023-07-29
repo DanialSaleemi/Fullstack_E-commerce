@@ -9,7 +9,7 @@ import { Frown, ShoppingCart } from "lucide-react";
 
 const Checkout = async () => {
 const fetchdatafromserver = async () => {
-    const res = await fetch(`http://localhost:3000/api/cart`, {
+    const res = await fetch(`${process.env.BASE_PATH}/api/cart`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -22,7 +22,7 @@ const fetchdatafromserver = async () => {
     let userID = cookies().get("user_id")?.value as string;
     console.log("user id from page.tsx", userID);
     const res = await fetch(
-      `http://localhost:3000/api/cart?user_id=${userID}`,
+      `${process.env.BASE_PATH}/api/cart?user_id=${userID}`,
       {
         method: "DELETE",
         cache: "no-cache",

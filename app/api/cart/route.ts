@@ -7,7 +7,7 @@ import { eq, ne } from "drizzle-orm";
 // export const currentUser = async (request: NextRequest) => {
 //   const userID = request.cookies.get("user_id");
 //   console.log(userID);
-//   fetch(`http://localhost:3000/api/cart?user_id=${userID}`, {
+//   fetch(`${process.env.BASE_PATH}/api/cart?user_id=${userID}`, {
 //     method: "GET",
 //   });
 // };
@@ -74,8 +74,7 @@ export const DELETE = async (request: NextRequest) => {
         .returning({ deletedId: cartTable.product_name });
       console.log(deletedrecords);
       return NextResponse.json({ success: true });
-    }
-     catch (error) {
+    } catch (error) {
       console.log(error);
       return NextResponse.json({ message: error, success: false });
     }

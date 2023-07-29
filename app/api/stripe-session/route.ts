@@ -43,7 +43,7 @@ export async function POST(requset:NextRequest) {
             }
           }),
         //   success_url: `${requset.headers.get("origin")}/success=true`,
-        success_url: `http://localhost:3000/Checkout/success/`,
+        success_url: `${process.env.BASE_PATH}/Checkout/success/`,
         cancel_url: `${requset.headers.get("origin")}/?canceled=true`,
         });
         return NextResponse.json(session);
