@@ -1,24 +1,24 @@
-
-import { client } from "@/sanity/lib/client"
+import { client } from "@/sanity/lib/client";
 import ImageUrlBuilder from "@sanity/image-url";
 import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Link from "next/link";
-import NextImage from "next/image";
+import { IProduct } from "@/components/utils/types";
+import Image from "next/image";
 
-export interface IProduct {
-  title: string;
-  _id: string;
-  description: string;
-  price: string;
-  image: IImage;
-  category: {
-    name: string;
-  };
-}
+// interface IProduct {
+//   title: string;
+//   _id: string;
+//   description: string;
+//   price: string;
+//   image: IImage | SanityImageSource;
+//   category: {
+//     name: string;
+//   };
+// }
 
 const builder = ImageUrlBuilder(client);
-export function urlFor(source: IImage | SanityImageSource) {
+export function urlFor(source: SanityImageSource) {
   return builder.image(source);
 }
 const getProductData = async (item: IProduct) => {
@@ -34,9 +34,8 @@ const getProductData = async (item: IProduct) => {
   return res;
 };
 
-  export default async function AllProductscard (item:IProduct) {
+export default async function AllProductscard(item: IProduct) {
   const data = await getProductData(item);
-
 
   return (
     <>
@@ -44,36 +43,30 @@ const getProductData = async (item: IProduct) => {
         <p className="font-semibold text-blue-600">ALL PRODUCTS</p>
       </div>
       <div className="flex flex-cols-3 gap-10 flex-wrap justify-center">
-        {data.map((item:IProduct) => (
-          <div key={item._id} className = "transition-transform duration-300 hover:scale-110 cursor-pointer">            
+        {data.map((item: IProduct) => (
+          <div
+            key={item._id}
+            className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+          >
             <Link href={`/productpage/${item._id}`}>
-              {item.image &&(
-                  <img
-                    src={urlFor(item.image).url()}
-                    alt={"product_image"}
-                    height={250}
-                    width={300}
-                    loading="lazy"
-                    className=" object-cover object-top"
-                  />
-                  )}
+              {item.image && (
+                <Image
+                src={urlFor(item.image).width(250).height(300).maxHeight(300).maxWidth(250).url()}
+                  alt={"product_image"}
+                  height={250}
+                  width={300}
+                  loading="lazy"
+                  className=" object-cover object-top"
+                />
+              )}
             </Link>
             <h1 className="text-xl font-extrabold tracking-tight">
               {item.title}
             </h1>
             <h2 className="font-bold">${item.price}</h2>
-
-
-            {/* <button
-              onClick={() => {handleAddtoCart(item._id)}}
-              className="rounded py-2 px-6 border bg-blue-600 text-white"
-            >
-              Add to Cart
-            </button> */}
           </div>
         ))}
       </div>
     </>
   );
 }
-//export default {Productcard};

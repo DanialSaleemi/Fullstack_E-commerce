@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import React, { Component } from "react";
 import Slider from "react-slick";
 import ProductIdPage from "@/app/productpage/[id]/page";
+import Image from "next/image";
 
 
 export interface IProduct {       // should be imported from '../utils/types'
@@ -109,7 +110,7 @@ const Productcard = async (item: IProduct) => {
           className="hover:scale-110 transition-transform duration-300 shadow-lg">              
 
               <Link href={`/productpage/${item._id}`}>
-                <img
+                <Image
                   src={urlFor(item.image).width(380).height(400).url()}
                   alt={"product_image"}
                   className=" object-cover object-top "

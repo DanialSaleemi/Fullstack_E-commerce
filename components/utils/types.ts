@@ -1,3 +1,4 @@
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { StaticImageData } from "next/image"
 import { Image as IImage } from "sanity";
 
@@ -15,8 +16,8 @@ export interface IProduct {
     _id: string;
     description: string;
     price: string;
-    image: IImage;
-    altimages: IImage[];
+    image: SanityImageSource;
+    altimages: SanityImageSource[];
     category: {
         name: string;
     };

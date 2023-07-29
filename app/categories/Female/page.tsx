@@ -5,6 +5,7 @@ import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Link from "next/link";
 import NextImage from "next/image";
+import Image from "next/image";
 
 export interface IProduct {
 
@@ -49,7 +50,7 @@ const getProductData = async (item: IProduct) => {
           <div key={item._id} className = "transition-transform duration-300 hover:scale-110 cursor-pointer">            
           <Link href={`/productpage/${item._id}`}>
           {item.image &&(
-          <img
+          <Image
               src={urlFor(item.image).width(250).height(300).maxHeight(300).maxWidth(250).url()}
               alt={"product_image"}      
               width={250}

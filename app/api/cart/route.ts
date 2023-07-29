@@ -4,13 +4,13 @@ import { v4 as uuid } from "uuid";
 import { cookies } from "next/headers";
 import { eq, ne } from "drizzle-orm";
 
-export const currentUser = async (request: NextRequest) => {
-  const userID = request.cookies.get("user_id");
-  console.log(userID);
-  fetch(`http://localhost:3000/api/cart?user_id=${userID}`, {
-    method: "GET",
-  });
-};
+// export const currentUser = async (request: NextRequest) => {
+//   const userID = request.cookies.get("user_id");
+//   console.log(userID);
+//   fetch(`http://localhost:3000/api/cart?user_id=${userID}`, {
+//     method: "GET",
+//   });
+// };
 
 // export const userID = cookies().get("user_id")?.value as string;
 
