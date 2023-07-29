@@ -113,6 +113,8 @@ const Productcard = async (item: IProduct) => {
                 <Image
                   src={urlFor(item.image).width(380).height(400).url()}
                   alt={"product_image"}
+                  width={380}
+                  height={400}
                   className=" object-cover object-top "
                 />
 
