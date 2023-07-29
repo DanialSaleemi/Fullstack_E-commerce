@@ -28,12 +28,12 @@ const handleAddtoCart = async (
 };
 
 const AddtoCart =  (props : any) => {
-  if (props.productdata[0]){
-//    console.log(props.productdata)
-    const CartValue = useSelector(
-      (state:RootState) => state.cart.totalQuantity
-      )
-      const dispatch = useDispatch();
+  //    console.log(props.productdata)
+  const CartValue = useSelector(
+    (state:RootState) => state.cart.totalQuantity
+    )
+    const dispatch = useDispatch();
+    if (props.productdata[0]){
       const addItems = async () => {
         dispatch(cartActions.addToCart({ qty: 1 }));
         toast.success(`Product added to cart`);
