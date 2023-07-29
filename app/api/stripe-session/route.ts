@@ -2,13 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const key = process.env.STRIPE_SECRET_KEY || "";
-
-
 const stripe = new Stripe(key, {
     apiVersion: "2022-11-15",
 });
 
+
+
+
+
 export async function POST(requset:NextRequest) {
+   
     const body = await requset.json();
     console.log(body);
     try {
@@ -39,8 +42,9 @@ export async function POST(requset:NextRequest) {
 
             }
           }),
-          success_url: `${requset.headers.get("origin")}/success=true`,
-          cancel_url: `${requset.headers.get("origin")}/?canceled=true`,
+        //   success_url: `${requset.headers.get("origin")}/success=true`,
+        success_url: `http://localhost:3000/Checkout/success/`,
+        cancel_url: `${requset.headers.get("origin")}/?canceled=true`,
         });
         return NextResponse.json(session);
     } else {

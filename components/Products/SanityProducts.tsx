@@ -1,19 +1,20 @@
 "use client";
 
-import { client } from "@/lib/sanityClient";
+import { client } from "@/sanity/lib/client"
 import ImageUrlBuilder from "@sanity/image-url";
 import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import AddtoCart from "../ui/AddToCart";
+import AddtoCart from "./AddToCart";
 import Link from "next/link";
 //import { handleOnClick } from "@/app/productpage/[id]/page";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import Carousel from "../Carousel/carousel";
 import React, { Component } from "react";
 import Slider from "react-slick";
+import ProductIdPage from "@/app/productpage/[id]/page";
 
-export interface IProduct {
+
+export interface IProduct {       // should be imported from '../utils/types'
   title: string;
   _id: string;
   description: string;
@@ -66,7 +67,7 @@ export function urlFor(source: IImage | SanityImageSource) {
 }
 
 export const getProductData = async (item: IProduct) => {
-  const res = await client.fetch(`*[_type=="product"] {
+  const res = await client.fetch(`*[_type=="product"][0..2] {
       price,
       _id,
         title,
@@ -75,19 +76,20 @@ export const getProductData = async (item: IProduct) => {
           name          
         }
     }`);
+    console.log(res);
   return res;
 };
 
-export const handleAddtoCart = async (_id: string) => {
-  const res = await fetch("/api/cart", {
-    method: "POST",
-    body: JSON.stringify({
-      product_id: _id,
-    }),
-  });
-  const result = await res.json();
-  console.log(result);
-};
+// export const handleAddtoCart = async (_id: string) => {
+//   const res = await fetch("/api/cart", {
+//     method: "POST",
+//     body: JSON.stringify({
+//       product_id: _id,
+//     }),
+//   });
+//   const result = await res.json();
+//   console.log(result);
+// };
 
 const Productcard = async (item: IProduct) => {
   const data = await getProductData(item);
@@ -102,9 +104,10 @@ const Productcard = async (item: IProduct) => {
       </div>
       <div
         className="flex flex-row gap-10 justify-center py-10 ">
-        {data.slice(0,3).map((item: IProduct) => (
+        {data && data.map((item: IProduct) => (
           <div key={item._id}
-          className="hover:scale-110 transition-transform duration-300 shadow-lg">
+          className="hover:scale-110 transition-transform duration-300 shadow-lg">              
+
               <Link href={`/productpage/${item._id}`}>
                 <img
                   src={urlFor(item.image).width(380).height(400).url()}
@@ -115,7 +118,7 @@ const Productcard = async (item: IProduct) => {
                 <h1 className="text-xl font-extrabold tracking-tight">
                   {item.title}
                 </h1>
-                <h2 className="font-bold">{item.price}</h2>
+                <h2 className="font-bold">${item.price}</h2>
               </Link>
             {/* <button
               onClick={() => {handleAddtoCart(item._id)}}

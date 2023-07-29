@@ -1,12 +1,12 @@
-"use client";
 import { Quantity } from "@/components/Products/Quantity";
-import { IProduct, getProductData } from "@/components/Products/SanityProducts";
-import AddtoCart from "@/components/ui/AddToCart";
+import { IProduct } from "@/components/Products/SanityProducts";
+import AddtoCart from "@/components/Products/AddToCart";
 import ImageUrlBuilder from "@sanity/image-url";
-import { client } from "@/lib/sanityClient";
+import { client } from "@/sanity/lib/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { Image as IImage } from "sanity";
-import Image, { StaticImageData } from "next/image";
+import NextImage from "next/image";
+import Checkout from "@/app/Checkout/page";
 
 const builder = ImageUrlBuilder(client);
 export function urlFor(source: IImage | SanityImageSource) {
@@ -15,91 +15,150 @@ export function urlFor(source: IImage | SanityImageSource) {
 
 const sizes = ["XS", "S", "M", "L", "XL"];
 
-export default async function Productcard(
+const getProductData = async (params: string) => {
+  const res = await client.fetch(`*[_type=="product" && _id=="${params}"] {
+      price,
+      _id,
+        title,
+        image,
+        "altimages":altimages[].asset->url,
+        category -> {
+          name          
+        }
+    }`);
+  console.log(res);
+  return res;
+};
+
+export default async function ProductIdPage(
   { params }: { params: { id: string } },
-  item: IProduct
+  items: IProduct
 ) {
-  const data = await getProductData(item);
+  // const MyComponent = ({ images }: any) => {
+  //   const [imageUrls, setImageUrl] = useState<any | null>(null);
+  //   useEffect(() => {
+  //     if (images) {
+  //       const fetchImageUrls = async () => {
+  //         const urls = await Promise.all(
+  //           images.altimages.map((items: IProduct) =>
+  //             urlFor(items.altimages[1]).url()
+  //           )
+  //         );
+  //         setImageUrl(urls);
+  //       };
+  //       fetchImageUrls();
+  //     }
+  //   });
+  //   if (!images) {
+  //     return <div>Loading left side...</div>;
+  //   }
+
+  //   return (
+  //     <div>
+  //       {imageUrls.map((imageUrl: any, index: Key | null | undefined) => {
+  //         <div key={index}>
+  //           <NextImage
+  //             src={imageUrl}
+  //             alt={`Image ${index}`}
+  //             width={300}
+  //             height={300}
+  //             loading="lazy"
+  //           />
+  //         </div>;
+  //       })}
+  //     </div>
+  //   );
+  // };
+  // const [productID,  setProductID] = useState('');
+  // useEffect( () =>  {
+  //   (async() => {
+
+  const data = await getProductData(params.id);
+  //     data.map((items : IProduct) => {
+  //       console.log(items._id);
+  //       setProductID(items._id);
+  //     })
+  //   })();
+  // })
 
   return (
     <>
-      <div className="grid grid-cols-5 gap-x-4">
-        {/* {data.map((items: IProduct) => (
-          <div key={items._id} className="ml-24">
-            {items.altimages ? (
-              items.altimages.map((elm) => {
-                return (
-                  <div className="mt-2">
-                    <Image
-                      src={urlFor(elm).height(500).width(500).bg("blue").url()}
-                      alt="more product images"
-                      loading="lazy"
-                    />
-                  </div>
-                );
-              })
-            ) : (
-              <div />
-            )}
-          </div>
-        ))} */}
-
-        <div className="flex col-span-4 flex-wrap">
-          {data.map((items: IProduct) => (
+      <div className="grid">
+        {data &&
+          data.map((items: IProduct) => (
             <div key={items._id} className="flex gap-x-6">
-            
-           { (items._id!=params.id)? (<div/>):(
-            
-            <>
-              <Image
-                src={urlFor(items.image).width(500).height(500).url()}
-                alt={items.title}
-                height={850}
-                width={600}
-                loading="lazy"
-              />
-              <div>
-                <h1 className="text-bold text-3xl tracking-wider">
-                  {items.title}
-                </h1>
-                <h2 className="text-base font-semibold text-gray-400">
-                  {items.description}
-                </h2>
+              <div className="flex">
+                <div className="flex justify-between gap-8 order-last ">
+                  <NextImage
+                    src={urlFor(items.image).width(500).height(500).url()}
+                    alt={items.title}
+                    height={850}
+                    width={600}
+                    loading="lazy"
+                  />
+                  <div>
+                    {/* <Checkout id={items._id} imageUrl={items.image} /> */}
+                    <h1 className="text-bold text-3xl tracking-wider">
+                      {items.title}
+                    </h1>
+                    <h2 className="text-base font-semibold text-gray-400">
+                      {items.description}
+                    </h2>
 
-                <div>
-                  <h2 className="text-md font-semibold pt-8 tracking-wider">
-                    SELECT SIZE
-                  </h2>
-                  {/*Size variants*/}
-                  <div className="flex space-x-6 my-2">
-                    {sizes.map((item) => {
-                      return (
-                        <div
-                          key={item}
-                          className="w-6 h-6 mt-2 rounded-full duration-300 border hover:shadow-xl hover:scale-150 flex justify-center items-center"
-                        >
-                          <span className="text-sm font-semibold text-center text-gray-600 hover:text-gray-800">
-                            {item}
-                          </span>
-                        </div>
-                      );
-                    })}
+                    <div>
+                      <h2 className="text-md font-semibold pt-8 tracking-wider">
+                        SELECT SIZE
+                      </h2>
+                      {/*Size variants*/}
+                      <div className="flex space-x-6 my-2">
+                        {sizes.map((item, index) => {
+                          return (
+                            <div
+                              key={index}
+                              className="w-6 h-6 mt-2 rounded-full duration-300 border hover:shadow-xl hover:scale-150 flex justify-center items-center"
+                            >
+                              <span
+                                className="text-sm font-semibold text-center text-gray-600 hover:text-gray-800"
+                                >
+                                {item}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <Quantity />
+                    <div className="flex items-center space-x-10 mt-6">
+                      <AddtoCart
+                        productdata={[items._id, items.title, items.price]}
+                      />
+                      <h2 className="text-3xl font-bold tracking-widest">
+                        ${items.price}
+                      </h2>
+                    </div>
                   </div>
                 </div>
-                <Quantity />
-                <div className="flex items-center space-x-10 mt-6">
-                  <AddtoCart />
-                  <h2 className="text-3xl font-bold tracking-widest">
-                    {items.price}
-                  </h2>
+                <div></div>
+                <div className="col-span-4 end-12">
+                  {items.altimages.map((index: any) => (
+                    <div key={index.asset?._key} className="gap-y-5 px-10">
+                      <div className="mb-6">
+                        <NextImage
+                          src={urlFor(index).url()}
+                          alt={items.title}
+                          height={150}
+                          width={100}
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              </>
-              )}
-              </div>
+            </div>
           ))}
-        </div>
       </div>
+
       <div className="my-10">
         <div className="relative">
           <h1 className="tracking-widest1 font-extrabold text-9xl opacity-10">

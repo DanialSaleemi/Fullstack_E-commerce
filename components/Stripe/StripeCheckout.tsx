@@ -1,40 +1,57 @@
 "use client";
 import getStripePromise from "@/lib/stripe";
-
-const checkoutProducts = [
-    {
-        product : 1,
-        name : "Stripe Product",
-        price : 400,
-        quantity: 2
-    },
-];
+import { StripeProducts } from "../utils/types";
 
 
 const StripeCheckoutButton = () => {
-    const handleCheckout= async () => {
-        
-        const stripe = await getStripePromise();
-    const response = await fetch("/api/stripe-session/", {
-    method: "POST",
-    headers: {"Content-type":"application/json"},
-    cache: "no-cache",
-    body: JSON.stringify(checkoutProducts),
-    });
-    const session = await response.json();
-    //if(data.session){
-        const result = await stripe?.redirectToCheckout ({ sessionId: session.id, })
-        console.log("stripe checkouit success");
-    //}
-    if(result?.error){
-        console.log(result.error.message);
-    }
-}
-  return (
-    <div className='py-5'>
-        <button className='bg-green-500 rounded-sm' onClick={handleCheckout}>Pay Now</button>
-    </div>
-  )
-}
+  const handleCheckout = async () => {
+    const fetchcheckoutproducts = async () => {
+      const res = await fetch(`http://localhost:3000/api/cart`, {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      const result = await res.json();
+      return result;
+    };
+    const data = await fetchcheckoutproducts();
 
-export default StripeCheckoutButton
+    let checkoutProducts: StripeProducts[] = [];
+    data.res.forEach((item: any) => {
+      checkoutProducts.push({
+        product: item.id,
+        name: item.product_name,
+        price: item.price,
+        quantity: item.quantity,
+      });
+    });
+
+    const stripe = await getStripePromise();
+    const response = await fetch("/api/stripe-session/", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      cache: "no-cache",
+      body: JSON.stringify(checkoutProducts),
+    });
+    console.log("Checkout Products in stripe body: ", checkoutProducts);
+    const session = await response.json();
+    const result = await stripe?.redirectToCheckout({ sessionId: session.id });
+
+    if (result?.error) {
+      console.log(result.error.message);
+    }
+  };
+  return (
+    <div className="py-5">
+      <button
+        className="bg-black text-white px-2 py-1"
+        onClick={handleCheckout}
+      >
+        Proceed to Checkout
+      </button>
+    </div>
+  );
+};
+
+export default StripeCheckoutButton;

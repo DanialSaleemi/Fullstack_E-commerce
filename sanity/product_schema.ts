@@ -43,7 +43,7 @@ export const product = {
 */   
     {
       name: "price",
-      type: "string",
+      type: "number",
       title: "Price",
     },
     defineField({

@@ -1,5 +1,5 @@
 
-import { client } from "@/lib/sanityClient";
+import { client } from "@/sanity/lib/client"
 import ImageUrlBuilder from "@sanity/image-url";
 import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -48,7 +48,7 @@ const getProductData = async (item: IProduct) => {
           <div key={item._id} className = "transition-transform duration-300 hover:scale-110 cursor-pointer">            
             <Link href={`/productpage/${item._id}`}>
               {item.image &&(
-                  <NextImage
+                  <img
                     src={urlFor(item.image).url()}
                     alt={"product_image"}
                     height={250}
@@ -61,7 +61,7 @@ const getProductData = async (item: IProduct) => {
             <h1 className="text-xl font-extrabold tracking-tight">
               {item.title}
             </h1>
-            <h2 className="font-bold">{item.price}</h2>
+            <h2 className="font-bold">${item.price}</h2>
 
 
             {/* <button

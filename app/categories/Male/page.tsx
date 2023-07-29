@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanityClient";
+import { client } from "@/sanity/lib/client"
 import ImageUrlBuilder from "@sanity/image-url";
 import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -37,16 +37,16 @@ const getProductData = async (item: IProduct) => {
   const data = await getProductData(item);
 
 
-  const handleAddtoCart = async (_id:string) => {
-    const res = await fetch("/api/cart", {
-      method: "POST",
-      body: JSON.stringify({
-        product_id: _id
-      }),
-    });
-    const result = await res.json();
-    console.log(result);
-  };
+  // const handleAddtoCart = async (_id:string) => {
+  //   const res = await fetch("/api/cart", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       product_id: _id
+  //     }),
+  //   });
+  //   const result = await res.json();
+  //   console.log(result);
+  // };
 
   return (
     <>
@@ -54,12 +54,12 @@ const getProductData = async (item: IProduct) => {
         <p className="font-semibold text-blue-600">MALE</p>
       </div>
       <div className="flex flex-cols-3 gap-10 flex-wrap justify-center">
-        {data.map((item:IProduct) => (
+        {data && data.map((item:IProduct) => (
           <div key={item._id} className = "transition-transform duration-300 hover:scale-110 cursor-pointer">            
             <Link href={`/productpage/${item._id}`}>
             {item.image &&(
-            <NextImage
-              src={urlFor(item.image).url()}
+            <img
+              src={urlFor(item.image).height(300).width(250).maxHeight(300).maxWidth(250).url()}
               alt={"product_image"}
               width={250}
               height={300}           
@@ -70,7 +70,7 @@ const getProductData = async (item: IProduct) => {
             <h1 className="text-xl font-extrabold tracking-tight">
               {item.title}
             </h1>
-            <h2 className="font-bold">{item.price}</h2>
+            <h2 className="font-bold">${item.price}</h2>
 { /*             <AddtoCart/>
 */ }
 

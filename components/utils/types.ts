@@ -1,10 +1,39 @@
 import { StaticImageData } from "next/image"
+import { Image as IImage } from "sanity";
 
-export type typeProduct = {
-    id : number,
-    name: string,
-    tagline : string,
-    category : string,
-    price: number,
-    image: string[] | StaticImageData[]
-};
+// export type typeProduct = {
+//     id : number;
+//     name: string;
+//     tagline : string;
+//     category : string;
+//     price: number;
+//     image: string[] | StaticImageData[];
+// };
+
+export interface IProduct {
+    title: string;
+    _id: string;
+    description: string;
+    price: string;
+    image: IImage;
+    altimages: IImage[];
+    category: {
+        name: string;
+    };
+    _type: string;
+    _createdAt: string;
+    _rev: string;
+    _updatedAt: string;
+  }
+
+  export interface responseType {
+    result: Array<IProduct>
+}
+
+
+export interface StripeProducts {
+    product: number;
+    name: string;
+    price: number;
+    quantity: number;
+}

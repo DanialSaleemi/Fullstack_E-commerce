@@ -6,28 +6,29 @@ export default function PromotionCards() {
   return (
     <>
       <div className="grid grid-flow-col grid-cols-2 gap-8">
-        <div className=" grid col-span-2 justify-start">
-          <Card className="grid w-6/8 h-52 min-w-min  mb-5 bg-slate-400 bg-opacity-50 grid-cols-2">
-            <CardContent>
-              <h1 className=" text-3xl font-bold mt-16">GET UP TO 60%</h1>
+        <div className=" grid grid-flow-row w-full h-full justify-start gap-2">
+          <Card className="grid w-full h-full bg-slate-400 bg-opacity-50 grid-cols-2">
+            <CardContent className="space-y-2 mt-16 justify-normal">
+              <h1 className=" text-3xl font-bold">GET UP TO 60%</h1>
               <p className="font-medium text-gray-700 text-lg">
                 For the summer season
               </p>
             </CardContent>
-            <CardContent>
-              <Image
-                src={"/event1.webp"}
-                alt="promotion_card_image"
-                width={600}
-                height={600}
-                loading="lazy"
-                className=" justify-items-end h-auto w-auto"
-              />
+            <CardContent className="relative h-auto w-auto">
+              <div className="h-auto w-auto  absolute bottom-0 right-0">
+                <Image
+                  src={"/event1.webp"}
+                  alt="promotion_card_image"
+                  width={200}
+                  height={230}
+                  loading="lazy"
+                />
+              </div>
             </CardContent>
           </Card>
-          <Card className="w-5/8 h-52 bg-slate-900 justify-center text-center">
-            <CardContent>
-              <h1 className=" text-4xl font-extrabold text-white my-10  ">
+          <Card className="w-full h-full bg-slate-900 justify-center text-center">
+            <CardContent className="space-y-2">
+              <h1 className=" text-4xl font-extrabold text-white mt-10 ">
                 GET 30% OFF
               </h1>
               <p className="font-medium tracking-wide  text-white text-md pb-2">
@@ -40,11 +41,11 @@ export default function PromotionCards() {
           </Card>
         </div>
         <div>
-          <div className=" grid grid-flow-col justify-end space-x-4">
+          <div className=" grid grid-flow-col justify-center space-x-6 ">
             <div>
-              <Card className="grid w-auto h-auto bg-orange-300 bg-opacity-70 ">
+              <Card className="grid w-full h-full grid-flow-row-dense bg-orange-300 bg-opacity-70">
                 <CardContent>
-                  <p className="font-medium text-sm text-black  opacity-80">
+                  <p className="font-semibold text-sm text-black  opacity-80 pt-2">
                     Flex Sweatshirt
                   </p>
                   <span className=" text-black text-md line-through opacity-80">
@@ -54,20 +55,22 @@ export default function PromotionCards() {
                     $75.00
                   </span>
                 </CardContent>
-                <Image
-                  src={"/event2.webp"}
-                  alt="promotion_card_image"
-                  width={285}
-                  height={280}
-                  loading="lazy"
-                  className=" object-cover object-bottom"
-                />
+
+                <div className=" bottom-0">
+                  <Image
+                    src={"/event2.webp"}
+                    alt="promotion_card_image"
+                    width={300}
+                    height={600}
+                    loading="lazy"
+                  />
+                </div>
               </Card>
             </div>
             <div>
-              <Card className="grid w-auto h-auto bg-slate-400 bg-opacity-50">
+              <Card className="grid w-full h-full bg-slate-400 bg-opacity-50">
                 <CardContent>
-                  <p className="font-medium text-black text-sm opacity-80">
+                  <p className="font-semibold text-black text-sm pt-2 opacity-80">
                     Flex Push Button Bomber
                   </p>
                   <span className=" text-black text-md line-through opacity-80">
@@ -83,7 +86,7 @@ export default function PromotionCards() {
                   width={280}
                   height={280}
                   loading="lazy"
-                  className=" h-auto w-auto "
+                  className=" h-auto w-auto pt-4"
                 />
               </Card>
             </div>
