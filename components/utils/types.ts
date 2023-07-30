@@ -38,3 +38,10 @@ export interface StripeProducts {
     price: number;
     quantity: number;
 }
+
+export let BASE_URL : string;
+if (process.env.NODE_ENV=="development") {
+     BASE_URL = "http://localhost:3000"
+} else {
+    BASE_URL = process.env.NEXT_PUBLIC_BASE_PATH as string;
+}

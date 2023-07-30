@@ -4,48 +4,54 @@ import options from "../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 import Link from "next/link";
 import { Frown, ShoppingCart } from "lucide-react";
-
-// const userID = cookies().get("user_id")?.value as string;
+import { deleteOldRecords, getCartData } from "../api/cart/route";
+import RefreshButton from "@/components/ui/refreshbutton";
 
 const Checkout = async () => {
-const fetchdatafromserver = async () => {
-    const res = await fetch(`${process.env.BASE_PATH}/api/cart`, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-    const result = await res.json();
-    return result;
-  };
-  const refreshcart = async () => {
-    let userID = cookies().get("user_id")?.value as string;
-    console.log("user id from page.tsx", userID);
-    const res = await fetch(
-      `${process.env.BASE_PATH}/api/cart?user_id=${userID}`,
-      {
-        method: "DELETE",
-        cache: "no-cache",
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
-    const result = await res.json();
-    if (!res.ok) {
-      console.log("DELETE API: Something went wrong!");
-    }
-    return result;
-  };
+  // const fetchdatafromserver = async () => {
+  //     const res = await fetch(`${process.env.BASE_PATH}/api/cart`, {
+  //       method: "GET",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //     });
+  //     const result = await res.json();
+  //     return result;
+  //   };
+  // const refreshcart = async () => {
+  //   let userID = cookies().get("user_id")?.value as string;
+  //   console.log("user id from page.tsx", userID);
+  //   const res = await fetch(
+  //     `${process.env.BASE_PATH}/api/cart?user_id=${userID}`,
+  //     {
+  //       method: "DELETE",
+  //       cache: "no-cache",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //     }
+  //   );
+  //   const result = await res.json();
+  //   if (!res.ok) {
+  //     console.log("DELETE API: Something went wrong!");
+  //   }
+  //   return result;
+  // };
 
-  let data = await fetchdatafromserver();
-  const cartfresh = await refreshcart(); // clean cart from the old data
-  data = await fetchdatafromserver(); //update cart
-  let quantity: number[] = data.res.map((item: any) => {
+  // let data = await fetchdatafromserver();
+  // const cartfresh = await refreshcart(); // clean cart from the old data
+  // data = await fetchdatafromserver(); //update cart
+
+  let data = await getCartData;
+  await deleteOldRecords();
+  data = getCartData;
+  
+
+  let quantity: number[] = data.map((item: any) => {
     // console.log(item)
     return item.quantity;
   });
-  let Price: number[] = data.res.map((item: any) => {
+  let Price: number[] = data.map((item: any) => {
     return item.price;
   });
   const Qty = quantity.reduce(
@@ -60,13 +66,13 @@ const fetchdatafromserver = async () => {
   const session = await getServerSession(options);
   console.log(data);
 
-  
-
-  if (data.res.length < 1) {
+  if (data.length < 1) {
+    data = await getCartData;
     return (
       <>
-      {/* <StripeCheckoutButton checkoutProd={data.res}/> */}
+        {/* <StripeCheckoutButton checkoutProd={data.res}/> */}
         <div className="center font-extrabold text-xl my-60 space-x-6">
+          <RefreshButton />
           <ShoppingCart size={120} />
           <h1>CART IS EMPTY</h1>
           <Frown size={120} />
@@ -79,8 +85,11 @@ const fetchdatafromserver = async () => {
         {session ? (
           <div className="grid grid-flow-row grid-cols-5 shadow-md">
             <div className="  col-span-3 space-y-2 ">
-              <h2 className="font-bold text-xl mb-6">Shopping Cart</h2>
-              {data.res.map((item: any) => (
+              <div className="flex justify-between pr-2 mb-6">
+                <h2 className="font-bold text-xl">Shopping Cart</h2>
+                <RefreshButton />
+              </div>
+              {data.map((item: any) => (
                 <div key={item.id}>
                   <div className="flex flex-col justify-start mx-2">
                     <div className="grid grid-flow-col ">

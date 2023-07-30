@@ -1,21 +1,25 @@
 "use client";
 import getStripePromise from "@/lib/stripe";
-import { StripeProducts } from "../utils/types";
+import { BASE_URL, StripeProducts } from "../utils/types";
 
 
 const StripeCheckoutButton = () => {
   const handleCheckout = async () => {
     const fetchcheckoutproducts = async () => {
-      const res = await fetch(`${process.env.BASE_PATH}/api/cart`, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-      const result = await res.json();
-      return result;
-    };
+      const res = await fetch(`${BASE_URL}/api/cart`, {
+              method: "GET",
+              cache: "no-cache",
+              headers: {
+                "content-type": "application/json",
+              },
+            });
+            const result = await res.json();
+            return result;
+          };
     const data = await fetchcheckoutproducts();
+
+
+
 
     let checkoutProducts: StripeProducts[] = [];
     data.res.forEach((item: any) => {

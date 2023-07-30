@@ -43,8 +43,9 @@ export async function POST(requset:NextRequest) {
             }
           }),
         //   success_url: `${requset.headers.get("origin")}/success=true`,
+        // cancel_url: `${requset.headers.get("origin")}/?canceled=true`,
         success_url: `${process.env.BASE_PATH}/Checkout/success/`,
-        cancel_url: `${requset.headers.get("origin")}/?canceled=true`,
+        cancel_url: `${process.env.BASE_PATH}/Checkout/`,
         });
         return NextResponse.json(session);
     } else {

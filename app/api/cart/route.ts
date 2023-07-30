@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { db, cartTable } from "@/lib/drizzle";
 import { v4 as uuid } from "uuid";
 import { cookies } from "next/headers";
-import { eq, ne } from "drizzle-orm";
+import { ne } from "drizzle-orm";
+
+
 
 // export const currentUser = async (request: NextRequest) => {
 //   const userID = request.cookies.get("user_id");
@@ -31,6 +33,11 @@ export const GET = async (request: NextRequest) => {
     });
   }
 };
+
+
+console.log("VerceL ENV: " +  process.env.VERCEL_URL, "PostgresURL_ENV: " + process.env.POSTGRES_URL);
+export const getCartData = await db.select().from(cartTable);
+
 
 export const POST = async (request: NextRequest) => {
   const req = await request.json();
@@ -80,3 +87,15 @@ export const DELETE = async (request: NextRequest) => {
     }
   }
 };
+
+export const deleteOldRecords = async () => {
+  const uid = cookies().get("user_id")?.value;
+  console.log("UID from deleteOldRecords", uid);
+  if (uid) {
+    const deletedrecords: { deletedId: string }[] =   await db 
+    .delete(cartTable)
+    .where(ne(cartTable.user_id, uid))
+    .returning({ deletedId: cartTable.product_name });
+    console.log(deletedrecords);
+  }
+}
