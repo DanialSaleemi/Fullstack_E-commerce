@@ -6,7 +6,7 @@ import { BASE_URL, StripeProducts } from "../utils/types";
 const StripeCheckoutButton = () => {
   const handleCheckout = async () => {
     const fetchcheckoutproducts = async () => {
-      const res = await fetch(`${BASE_URL}/api/cart`, {
+      const res = await fetch(`/api/cart`, {
               method: "GET",
               cache: "no-cache",
               headers: {
