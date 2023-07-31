@@ -9,6 +9,8 @@ This is an E-Commerce [Next.js](https://nextjs.org/) project bootstrapped with [
 
 * State Mangement | [Redux Toolkit](https://redux-toolkit.js.org/)
 
+* Authentication | [NextAuth.js](https://next-auth.js.org/)
+
 * Database (Serverless) |  [Vercel/Postgres](https://vercel.com/docs/storage/vercel-postgres) ![Static Badge](https://img.shields.io/badge/Vercel-Postgres-orange)
 * ORM | [Drizzle ORM](https://orm.drizzle.team/) ![Static Badge](https://img.shields.io/badge/ORM-Drizzle_ORM-blue)
 * Payment Processing                | [Stripe APIs](https://stripe.com/docs/testing) ![Static Badge](https://img.shields.io/badge/Payment_Checkout-Stripe_APIs-magenta)
