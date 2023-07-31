@@ -12,7 +12,7 @@ export const Quantity = () => {
  
   return (
     <div className="flex">
-      <div className="center mt-12 space-x-6">
+      <div className="center lg:mt-12 mt-8 lg:space-x-6 space-x-3">
         <h3 className="font-semibold text-lg tracking-wide">Quantity:</h3>
         {/* Decrement button */}
         <button

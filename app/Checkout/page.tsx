@@ -71,8 +71,7 @@ const Checkout = async () => {
     return (
       <>
         {/* <StripeCheckoutButton checkoutProd={data.res}/> */}
-        <div className="center font-extrabold text-xl my-60 space-x-6">
-          <RefreshButton />
+        <div className="center justify-center font-extrabold lg:text-xl text-md lg:my-60 my-32 lg:space-x-6 max-h-fit ">
           <ShoppingCart size={120} />
           <h1>CART IS EMPTY</h1>
           <Frown size={120} />
@@ -83,7 +82,7 @@ const Checkout = async () => {
     return (
       <>
         {session ? (
-          <div className="grid grid-flow-row grid-cols-5 shadow-md">
+          <div className="grid grid-flow-row lg:grid-cols-5 grid-cols-2 lg:shadow-md shadow-none">
             <div className="  col-span-3 space-y-2 ">
               <div className="flex justify-between pr-2 mb-6">
                 <h2 className="font-bold text-xl">Shopping Cart</h2>
@@ -91,9 +90,9 @@ const Checkout = async () => {
               </div>
               {data.map((item: any) => (
                 <div key={item.id}>
-                  <div className="flex flex-col justify-start mx-2">
+                  <div className="flex flex-col justify-start lg:mx-2 mx-0">
                     <div className="grid grid-flow-col ">
-                      <li className="flex list-none space-x-8">
+                      <li className="flex list-none lg:space-x-8 space-x-4">
                         <span>{item.product_name}</span>
                         <h3>${item.price}</h3>
                         <h3>Qty: {item.quantity}</h3>
@@ -105,7 +104,7 @@ const Checkout = async () => {
             </div>
 
             <div className="col-span-2 ">
-              <div className="flex gap-20 mb-10">
+              <div className="flex gap-20 lg:mb-10 lg:mt-0 my-5">
                 <h2 className="font-bold text-xl">Order Summary</h2>
               </div>
 

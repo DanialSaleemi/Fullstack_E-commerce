@@ -13,7 +13,7 @@ export default function RefreshButton() {
     <button
       className={`${
         isPending ? "cursor-not-allowed text-gray-400" : ""
-      } text-md text-gray-500 hover:text-gray-900`}
+      } text-md text-gray-500 hover:text-gray-900 justify-center`}
       disabled={isPending}
       onClick={() => {
         startTransition(() => {

@@ -1,8 +1,9 @@
+
 import { client } from "@/sanity/lib/client"
 import ImageUrlBuilder from "@sanity/image-url";
 import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import Link from 'next/link';
+import Link from "next/link";
 import NextImage from "next/image";
 import Image from "next/image";
 
@@ -22,7 +23,7 @@ export function urlFor(source: IImage | SanityImageSource) {
   return builder.image(source);
 }
 const getProductData = async (item: IProduct) => {
-  const res = await client.fetch(`*[_type=="product" && category->name=="Male"] {
+  const res = await client.fetch(`*[_type=="product" && category->name=="Kids"] {
       price,
       _id,
         title,
@@ -34,25 +35,25 @@ const getProductData = async (item: IProduct) => {
   return res;
 };
 
-  export default async function MaleProductscard (item:IProduct) {
+  export default async function KidsProductscard (item:IProduct) {
   const data = await getProductData(item);
 
 
-  // const handleAddtoCart = async (_id:string) => {
-  //   const res = await fetch("/api/cart", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       product_id: _id
-  //     }),
-  //   });
-  //   const result = await res.json();
-  //   console.log(result);
-  // };
+  const handleAddtoCart = async (_id:string) => {
+    const res = await fetch("/api/cart", {
+      method: "POST",
+      body: JSON.stringify({
+        product_id: _id
+      }),
+    });
+    const result = await res.json();
+    console.log(result);
+  };
 
   return (
     <>
       <div className="container my-6 lg:my-10 text-center space-y-8">
-        <p className="font-semibold text-blue-600">MALE</p>
+        <p className="font-semibold text-blue-600">KIDS</p>
       </div>
       <div className="flex flex-cols-3 gap-10 flex-wrap justify-center">
         {data && data.map((item:IProduct) => (
@@ -60,10 +61,11 @@ const getProductData = async (item: IProduct) => {
             <Link href={`/productpage/${item._id}`}>
             {item.image &&(
             <Image
-              src={urlFor(item.image).height(300).width(250).maxHeight(300).maxWidth(250).url()}
+            src={urlFor(item.image).width(250).height(300).maxHeight(300).maxWidth(250).url()}
               alt={"product_image"}
               width={250}
-              height={300}           
+              height={300}
+              loading="lazy"
               className=" object-cover object-top"
             />
             )}
@@ -72,6 +74,9 @@ const getProductData = async (item: IProduct) => {
               {item.title}
             </h1>
             <h2 className="font-bold text-center md:text-left">${item.price}</h2>
+
+
+
 
           </div>
         ))}

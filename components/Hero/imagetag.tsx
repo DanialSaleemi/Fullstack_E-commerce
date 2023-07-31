@@ -5,7 +5,7 @@ type Props = {};
 
 export default function ImageTag({}: Props) {
   return (
-    <div className=" flex space-x-12">
+    <div className="lg:flex grid grid-cols-2 gap-y-6 place-items-center lg:flex-grow lg:space-x-12">
       <Image
         src={"/Featured1.webp"}
         width={100}

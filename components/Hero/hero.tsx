@@ -8,12 +8,12 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <>
-      <div className="grid grid-cols-2">
-        <div className="space-y-12">
-          <div className="flex h-12 w-28 justify-evenly items-center rounded-sm bg-blue-100 mt-20 mb-10">
+      <div className="grid lg:grid-cols-2 grid-cols-1">
+        <div className="space-y-6 lg:space-y-12">
+          <div className="flex h-12 w-28 justify-evenly items-center rounded-sm bg-blue-100 mt-5 lg:mt-20 mb-5 lg:mb-10">
             <p className=" font-semibold text-blue-600 ">Sale 70%</p>
           </div>
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          <h1 className="scroll-m-20 text-4xl lg:text-5xl font-bold lg:font-extrabold tracking-tight">
             An Industrial Take on Streetwear
           </h1>
 
@@ -22,7 +22,7 @@ export default function Hero() {
             wear Dine outfits.
           </p>
 
-          <Button asChild className="ref">
+          <Button asChild className="ref ">
             <Link href={"/categories/All"}>
               <ShoppingCart className="mr-2 h-4 w-4" /> Start Shopping
             </Link>
@@ -30,10 +30,10 @@ export default function Hero() {
           <ImageTag />
         </div>
 
-        <div>
-          <div className="flex my-12 rounded-full items-center bg-orange-100 h-[600px] w-[600px]">
+        <div className="relative center h-96 lg:h-auto lg:mt-8">
+          <div className="absolute lg:my-12 my-6 rounded-full bg-orange-100 lg:h-[500px] h-[256px] lg:w-[500px] w-[256px]">
             <Image
-              className="absolute w-auto h-auto"
+              className="absolute w-[270px] lg:w-[520px] h-[270px] lg:h-[520px] bottom-0"
               src={"/header.webp"}
               alt="avatar"
               height={700}

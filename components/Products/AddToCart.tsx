@@ -21,6 +21,7 @@ const handleAddtoCart = async (
   };
   const res = await fetch("/api/cart", {
     method: "POST",
+    cache: "no-cache",
     body: JSON.stringify(products),
   });
   const result = await res.json();

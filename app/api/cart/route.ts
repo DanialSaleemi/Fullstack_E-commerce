@@ -35,7 +35,6 @@ export const GET = async (request: NextRequest) => {
 };
 
 
-console.log("VerceL ENV: " +  process.env.VERCEL_URL, "PostgresURL_ENV: " + process.env.POSTGRES_URL);
 export const getCartData = await db.select().from(cartTable);
 
 

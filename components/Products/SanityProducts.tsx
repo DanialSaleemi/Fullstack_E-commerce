@@ -4,14 +4,8 @@ import { client } from "@/sanity/lib/client"
 import ImageUrlBuilder from "@sanity/image-url";
 import { Image as IImage } from "sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import AddtoCart from "./AddToCart";
 import Link from "next/link";
-//import { handleOnClick } from "@/app/productpage/[id]/page";
-import { NextPage } from "next";
-import { useRouter } from "next/router";
 import React, { Component } from "react";
-import Slider from "react-slick";
-import ProductIdPage from "@/app/productpage/[id]/page";
 import Image from "next/image";
 
 
@@ -27,40 +21,6 @@ export interface IProduct {       // should be imported from '../utils/types'
   };
 }
 
-
-
-
-export default function SimpleSlider() {
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
-  return (
-    <Slider {...settings}>
-      <div>
-        <h3>1</h3>
-      </div>
-      <div>
-        <h3>2</h3>
-      </div>
-      <div>
-        <h3>3</h3>
-      </div>
-      <div>
-        <h3>4</h3>
-      </div>
-      <div>
-        <h3>5</h3>
-      </div>
-      <div>
-        <h3>6</h3>
-      </div>
-    </Slider>
-  );
-}
 
 const builder = ImageUrlBuilder(client);
 export function urlFor(source: IImage | SanityImageSource) {
@@ -81,17 +41,6 @@ export const getProductData = async (item: IProduct) => {
   return res;
 };
 
-// export const handleAddtoCart = async (_id: string) => {
-//   const res = await fetch("/api/cart", {
-//     method: "POST",
-//     body: JSON.stringify({
-//       product_id: _id,
-//     }),
-//   });
-//   const result = await res.json();
-//   console.log(result);
-// };
-
 const Productcard = async (item: IProduct) => {
   const data = await getProductData(item);
 
@@ -99,12 +48,12 @@ const Productcard = async (item: IProduct) => {
     <>
       <div className="container my-10 text-center space-y-8">
         <p className="font-semibold text-blue-600">PRODUCTS</p>
-        <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl">
+        <h1 className="text-xl font-extrabold tracking-tight lg:text-4xl">
           Check What We Have
         </h1>
       </div>
       <div
-        className="flex flex-row gap-10 justify-center py-10 ">
+        className="lg:flex lg:flex-row  grid lg:gap-10 justify-center py-10 ">
         {data && data.map((item: IProduct) => (
           <div key={item._id}
           className="hover:scale-110 transition-transform duration-300 shadow-lg">              
@@ -123,12 +72,6 @@ const Productcard = async (item: IProduct) => {
                 </h1>
                 <h2 className="font-bold">${item.price}</h2>
               </Link>
-            {/* <button
-              onClick={() => {handleAddtoCart(item._id)}}
-              className="rounded py-2 px-6 border bg-blue-600 text-white"
-            >
-              Add to Cart
-            </button> */}
           </div>
         ))}
       </div>

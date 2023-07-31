@@ -7,7 +7,7 @@ import Head from 'next/head';
         <title>Order Success | Dine Market - Fashion</title>
       </Head>
       <div className="min-h-fit flex items-center justify-center">
-        <div className="max-w-xl w-full p-7 rounded-lg bg-gray-600 text-center">
+        <div className="max-w-xl w-full p-7 rounded-lg bg-gradient-to-tr to-purple-900 via-teal-600 from-gray-900 text-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-24 w-24 mx-auto text-green-500 mb-6"

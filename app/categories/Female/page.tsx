@@ -38,16 +38,14 @@ const getProductData = async (item: IProduct) => {
 
   export default async function FemaleProductscard (item:IProduct) {
   const data = await getProductData(item);
-
-
   return (
     <>
-      <div className="container my-10 text-center space-y-8">
+      <div className="container my-6 lg:my-10 text-center space-y-8">
         <p className="font-semibold text-blue-600">FEMALE</p>
       </div>
-      <div className="flex flex-cols-3 gap-10 flex-wrap justify-center">
+      <div className="flex flex-cols-3 gap-10 flex-wrap justify-center ">
         {data && data.map((item:IProduct) => (
-          <div key={item._id} className = "transition-transform duration-300 hover:scale-110 cursor-pointer">            
+          <div key={item._id} className = "transition-transform duration-300 md:hover:scale-110 cursor-pointer shadow-lg">            
           <Link href={`/productpage/${item._id}`}>
           {item.image &&(
           <Image
@@ -60,22 +58,11 @@ const getProductData = async (item: IProduct) => {
             />
           )}
             </Link>
-            <h1 className="text-xl font-extrabold tracking-tight">
+            <h1 className="text-xl font-extrabold tracking-tight text-center md:text-left">
               {item.title}
             </h1>
-            <h2 className="font-bold">${item.price}</h2>
-{ /*             <AddtoCart/>
-*/ }
+            <h2 className="font-bold text-center md:text-left">${item.price}</h2>
 
-
-
-
-            {/* <button
-              onClick={() => {handleAddtoCart(item._id)}}
-              className="rounded py-2 px-6 border bg-blue-600 text-white"
-            >
-              Add to Cart
-            </button> */}
           </div>
         ))}
       </div>

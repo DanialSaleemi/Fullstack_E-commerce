@@ -6,13 +6,13 @@ export default function Promotion() {
   return (
     <>
 
-    <div className='container my-10 text-center space-y-8'>    
+    <div className='container lg:my-10 text-center space-y-8'>    
 
     <p className='font-semibold text-blue-600'>
         PROMOTIONS
     </p>
-    <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl">
-        Our Promotions Events    
+    <h1 className="text-xl lg:text-4xl font-bold lg:font-extrabold text-left lg:text-center tracking-tight ">
+        Our Promotion Events    
     </h1>
     </div>
     <div>
