@@ -121,7 +121,7 @@ const Checkout = async () => {
           <div className="grid justify-center space-y-2">
             <h1>Please Login to Checkout</h1>
             <Link
-              href={`${process.env.BASE_PATH}/api/auth/signin?callbackUrl=${process.env.BASE_PATH}/Checkout`}
+              href={`/api/auth/signin?callbackUrl=/Checkout`}
               className="border bg-black text-white text-center text-xl   py-1"
             >
               Sign In
