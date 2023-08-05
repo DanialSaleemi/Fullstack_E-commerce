@@ -41,12 +41,15 @@ const StripeCheckoutButton = () => {
     console.log("Checkout Products in stripe body: ", checkoutProducts);
     const session = await response.json();
     console.log("Session response: ", session);
+  if (session.created)
+  {
     const result = await stripe?.redirectToCheckout({ sessionId: session.id });
-
+  
     if (result?.error) {
       console.log(result.error.message);
     }
   };
+}
   return (
     <div className="py-5">
       <button
