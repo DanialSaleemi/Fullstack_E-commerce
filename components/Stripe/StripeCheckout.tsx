@@ -32,7 +32,7 @@ const StripeCheckoutButton = () => {
     });
 
     const stripe = await getStripePromise();
-    const response = await fetch("/api/stripe-session/", {
+    const response = await fetch("/api/stripe-session", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       cache: "no-cache",
